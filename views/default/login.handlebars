@@ -1,0 +1,21 @@
+<div class="card card-login mx-auto my-5">
+   <div class="card-header">Login</div>
+   <div class="card-body">
+       <form action="/login" method="post">
+           <div class="form-group">
+               <label for="email">Email Address</label>
+               <input type="email" name="email" id="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter Email">
+           </div>
+           <div class="form-group">
+               <label for="password">Password</label>
+               <input type="password" name="password" id="password" class="form-control" placeholder=" Password">
+           </div>
+           <button type="submit" class="btn btn-primary btn-block">Login</button>
+       </form>
+       <div class="text-center">
+           <a href="/register" class="d-block small mt-3">Register An Account</a>
+           <a href="/forget_password" class="d-block small">Forget Password</a>
+           <a href="/" class="d-block small">Home Page/</a>
+       </div>
+   </div>
+</div> 

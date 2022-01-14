@@ -1,0 +1,53 @@
+<div class="container-fluid">
+               <div class="card">
+                        <form action="/admin/post/edit/{{post._id}}?newMethod=PUT" method="post">
+                         
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="title">Title</label>
+                                    <div class="col-md-9">
+                                        <input type="text" value="{{post.title}}" name="title" id="title" class="form-control" placeholder="Enter Title" value="{{post.title}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="status">Status</label>
+                                    <div class="col-md-9">
+                                        <select name="status" id="status"  class="form-control">
+                                            <option value="public">Public</option>
+                                            <option value="private">Private</option>
+                                            <option value="draft">Draft</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="category">Category</label>
+                                    <div class="col-md-9">
+                                        <select name="category" id="category"  class="form-control">
+                                            {{#select post.category}}
+                                                {{#each categories}}
+                                                    <option value="{{_id}}">{{this.name}}</option>
+                                                {{/each}}
+                                            {{/select}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="allowComments">
+                                        Allow Comments
+                                    </label>
+                                    <div class="col-md-9">
+                                            <input type="checkbox" name="allowComments" id="allowComments">
+                                    </div>   
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="description">Content</label>
+                                    <div class="col-md-9">
+                                     <textarea class="form-control" id="description" name="description" cols="3" rows="7" placeholder="Enter Your content">{{post.description}}</textarea>
+                                    </div>
+                                </div>
+                                 <button type="submit" class="btn btn-primary">
+                                    Update Post</button>
+                            </div>
+                          </form>
+                        </div>
+                </div>

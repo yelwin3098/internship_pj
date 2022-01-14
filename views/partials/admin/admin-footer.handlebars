@@ -1,0 +1,98 @@
+ <footer class="footer text-center">
+                All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="/admin/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/admin/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="/admin/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/admin/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/admin/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
+    <!-- Charts js Files -->
+    <script src="/admin/assets/libs/flot/excanvas.js"></script>
+    <script src="/admin/assets/libs/flot/jquery.flot.js"></script>
+    <script src="/admin/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="/admin/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="/admin/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="/admin/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="/admin/dist/js/pages/chart/chart-page-init.js"></script>
+    
+    <script src="/admin/assets/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="/admin/assets/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+        $(document).ready(function(){
+            setTimeout(function(){
+                $('.auto-hide').slideUp(300);
+            },1000)
+        });
+        $('#create-category-button').on('click',function(e){
+            e.preventDefault();
+
+            var data=$('#category-title').val();
+            $.ajax({
+                url:'/admin/categories',
+                type:'POST',
+                data:{name:data},
+                success:function(response){
+                    var html=`<tr>
+                                    <td>${response.name}</td>
+                                    <td>
+                                        <a href="/admin/categories/edit/${response._id}"
+                                            class="btn btn-sm btn-warning">Edit</a>
+                                        <form action="/admin/categories/delete/${response._id}?newMethod=DELETE"
+                                            method="post">
+                                            <button class="btn btn-sm btn-danger pull-right"
+                                                type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>`;
+                $(".category-list").append(html);
+                }
+            });
+            $('#category-title').val('');
+        });
+        $('#update-category-button').on('click',function(e){
+            e.preventDefault();
+
+            var data=$('#category-title').val();
+            var id=$('#category-id').val();
+            $.ajax({
+                url:`/admin/categories/edit/${id}`,
+                type:'POST',
+                data:{name:data},
+                success:function(response){
+                    window.location.href=response.url;
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<div class="container-fluid">
+               <div class="card">
+                        <form action="/admin/posts/create" method="post" enctype="multipart/form-data">
+                         
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="title">Title</label>
+                                    <div class="col-md-9">
+                                        <input type="text" name="title" id="title" class="form-control" placeholder="Enter Title">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="file">File Upload</label>
+                                    <div class="col-md-9">
+                                        <input type="file" name="uploadedfile" id="file" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="status">Status</label>
+                                    <div class="col-md-9">
+                                        <select name="status" id="status"  class="form-control">
+                                            <option value="public">Public</option>
+                                            <option value="private">Private</option>
+                                            <option value="draft">Draft</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="category">Category</label>
+                                    <div class="col-md-9">
+                                        <select name="category" id="category"  class="form-control">
+                                            {{#each categories}}
+                                            <option value="{{_id}}">{{this.name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="allowComments">
+                                        Allow Comments
+                                    </label>
+                                    <div class="col-md-9">
+                                            <input type="checkbox" name="allowComments" id="allowComments">
+                                    </div>   
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="description">Content</label>
+                                    <div class="col-md-9">
+                                     <textarea class="form-control" id="description" name="description" cols="3" rows="7" placeholder="Enter Your content"></textarea>
+                                    </div>
+                                </div>
+                                 <button type="submit" class="btn btn-primary">
+                                    Create Post</button>
+                            </div>
+                          </form>
+                        </div>
+                </div>
